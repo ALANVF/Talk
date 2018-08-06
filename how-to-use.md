@@ -10,7 +10,7 @@
 Create a file called `Talk.bat` in your account folder (`C:\Users\MyName\`), and put the following in it:
 ```batch
 @echo off
-perl6 <path-to-Talk.pl6> %1
+perl6 <path-to-Talk.pl6> %1 %2
 @echo on
 ```
 
