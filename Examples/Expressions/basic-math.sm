@@ -1,1 +1,34 @@
 #!perl6
+
+# "[op] list" basically applies the operator "op" to the values in the list, so "[+] [1, 2, 3]" == "1 + 2 + 3"
+
+make a be 1 And make b be 2 And make c be 3
+
+say a + b
+say c - a
+say b * c
+say (a + c) / b
+say [+] [a, b, c]
+
+-/ expected output:
+	3
+	2
+	6
+	2
+	6
+-\
+
+
+make my-list be list (1, 2, 3, 4, 5)
+
+say [*] my-list
+say [+] my-list[2..4]
+say [+] my-list[2, 4]
+say my-list Z+ [6, 7, 8, 9, 10]
+
+-/ expected output:
+	120
+	12
+	8
+	[7 9 11 13 15]
+-\
