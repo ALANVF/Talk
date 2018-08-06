@@ -1,22 +1,22 @@
-#  _____________
+#  ____________
 # |            |
 # |    TALK    |
 # |____________|
 # 
 # Language website: https://Talk-reference-guide--theangryepicbanana.repl.co
 # 
-# Version 1.0.2
+# Version 1.0.3
 # ==== New Stuff ====
-# - Made the macros more powerful. Normal Regex can be used for matching now. It works like s/// does.
+# - Changed how a few things work.
 # ===================
 # 
 #   ______________________________________
-#  |  Some cool language that I'm making, \
-#  \  so idk why you're interested in it. |
-#  |  While you're here, could you tell   \
-#  \  other people about this pls?        |
+#  /  Some cool language that I'm making, \
+#  \  so idk why you're interested in it. /
+#  /  While you're here, could you tell   \
+#  \  other people about this pls?        /
 #   ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
-
+# (yes I know that my code is messy, deal with it)
 
 use MONKEY-SEE-NO-EVAL;
 
@@ -357,6 +357,7 @@ multi sub infix:<isnt>(Cool $v1, Cool $v2) {
     return not $v1 ~~ $v2;
 }
 
-#say $code;
-#say "-" * 50;
-EVAL $code;
+if @*ARGS[1] {
+    if @*ARGS[1] ~~ one <--debug -d> {say $code}
+    else {EVAL $code}
+}
