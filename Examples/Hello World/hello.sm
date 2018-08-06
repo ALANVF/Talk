@@ -1,4 +1,4 @@
 #!perl6
-#that's there to add some syntax highlighting
+# that's there to add some syntax highlighting
 
 say "Hello, world!"
