@@ -357,7 +357,5 @@ multi sub infix:<isnt>(Cool $v1, Cool $v2) {
     return not $v1 ~~ $v2;
 }
 
-if @*ARGS[1] {
-    if @*ARGS[1] ~~ one <--debug -d> {say $code}
-    else {EVAL $code}
-}
+if @*ARGS[1] ~~ "--debug" || @*ARGS[1] ~~ "-d" {say $code}
+else {EVAL $code
