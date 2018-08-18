@@ -1,0 +1,23 @@
+#!perl6
+
+# Talk classes are kind weird right now btw
+
+make Banana
+	its is-amazing is true
+	
+	on say
+		if self.is-amazing then say "you is cool"
+		otherwise say "okbye" And end
+	end
+end
+
+make banana1 be Banana.new: :is-amazing
+make banana2 be Banana.new: :!is-amazing
+
+say banana1
+say banana2
+
+-/ output:
+you is cool
+okbye
+-\
