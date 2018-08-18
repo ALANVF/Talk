@@ -1,0 +1,18 @@
+#!perl6
+
+loop from 1 to 10 as i
+	say "The door :(i ** 2) is open"
+end
+
+-/ outputs:
+The door 1 is open
+The door 4 is open
+The door 9 is open
+The door 16 is open
+The door 25 is open
+The door 36 is open
+The door 49 is open
+The door 64 is open
+The door 81 is open
+The door 100 is open
+-\
