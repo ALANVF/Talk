@@ -1,0 +1,19 @@
+#!perl6
+
+make my-dict be dictionary (
+	a means 1
+	b means 2
+	c means 3
+)
+
+loop though my-dict as k, v
+	say ":(k) is :(v)"
+end
+
+-/ outputs:
+a is 1
+b is 2
+c is 3
+-\
+
+# Also, `say my-dict as "#k is #v"` outputs: "(a is 1, b is 2, c is 3)"
