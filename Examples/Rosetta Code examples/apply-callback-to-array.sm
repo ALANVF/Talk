@@ -1,0 +1,9 @@
+#!perl6
+
+method func
+	2 * $^x + 3
+end
+
+loop i through 1..5
+	say func: i
+end
