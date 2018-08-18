@@ -1,0 +1,5 @@
+#!perl6
+
+make my-list be list (1, 2, 3, 4, 5)
+
+say elems list #outputs: 5
