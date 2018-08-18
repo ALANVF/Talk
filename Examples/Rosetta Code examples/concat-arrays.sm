@@ -1,0 +1,6 @@
+#!perl6
+
+make l1 be list (1, 2, 3)
+make l2 be list (4, 5, 6)
+
+say flat l1, l2 #outputs: (1 2 3 4 5 6)
