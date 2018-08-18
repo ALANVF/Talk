@@ -1,0 +1,33 @@
+#!perl6
+
+make Thing
+	on banana then say "I haz a method" then end
+  	#'on' and 'multi' need to be on separate lines for now because I haven't added 'multi' things yet
+	
+	multi
+	on mango then say "No arguments given" then end
+	
+	multi
+	on mango takes Str $foo then say "String given" then end
+	
+	multi
+	on mango takes Int $foo then say "Integer given" then end
+end
+
+make thing be Thing.new
+
+# No arguments: parentheses are optional
+thing.banana
+thing.banana()
+thing.mango
+thing.mango()
+
+# Arguments: parentheses or colon required
+thing.mango("apple")
+thing.mango: "apple"
+thing.mango(5)
+thing.mango: 5
+
+# Indirect (reverse order) method call syntax: colon required
+make other-thing be new Thing: 
+mango thing: 5
