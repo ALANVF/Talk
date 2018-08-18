@@ -1,0 +1,19 @@
+#!perl6
+
+make my-dict be dictionary (
+	a means 1
+	b means 2
+	c means 3
+)
+
+say my-dict<a>
+say my-dict<b>
+say my-dict<c>
+
+-/ outputs:
+1
+2
+3
+-\
+
+# All perl6 hash things should work too
