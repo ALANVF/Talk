@@ -1,0 +1,32 @@
+#!perl6
+
+make a be 1 And make b be 2 And make c be 3
+
+if a + b eq c
+	say "a plus b equals c"
+end
+
+if a gt b
+	say "a is greater than b"
+otherwise
+	say "a isn't greater than b"
+end
+
+if c - a gt b
+	say "c minus a is greater than b"
+also if c - b lt b
+	say "c minus a is less than b"
+also if c - b eq b
+	say "c minus a equals b"
+otherwise
+	say "idk"
+end
+
+make st be "mango"
+
+given st
+	when "banana" then say "it's a banana"
+	when "mango"
+		say "it's a mango"
+	default then say "idk" And end
+end
