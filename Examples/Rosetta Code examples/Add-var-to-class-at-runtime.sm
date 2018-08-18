@@ -1,0 +1,5 @@
+#!perl6
+
+Str.^add_method: "banana", method {"a banana"} #'method' at start of line is different than when it's not
+
+say "mango".banana #outputs: "a banana"
