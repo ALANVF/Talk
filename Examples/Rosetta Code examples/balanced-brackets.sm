@@ -1,0 +1,19 @@
+#!perl6
+
+# ok this is kinda copied from the perl6 example on rosetta code, but whatever
+
+method balanced takes $s
+    make l be 0
+    loop with $s.comb
+        given $_
+            when "]"
+                --l
+                return false if l lt 0
+            when "["
+                ++l
+        end
+    end And return l eq 0
+end
+ 
+make s be "[[][][[][[][]]][]]"
+say ":(s) :((balanced(s) ?? 'is' !! 'is not')) well-balanced"
