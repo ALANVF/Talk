@@ -1,20 +1,20 @@
-#  ____________
+#  _____________
 # |            |
 # |    TALK    |
 # |____________|
 # 
 # Language website: https://Talk-reference-guide--theangryepicbanana.repl.co
 # 
-# Version 1.0.3
+# Version 1.0.4
 # ==== New Stuff ====
-# - Changed how a few things work.
+# - Smashed a bug or two.
 # ===================
 # 
 #   ______________________________________
-#  /  Some cool language that I'm making, \
-#  \  so idk why you're interested in it. /
-#  /  While you're here, could you tell   \
-#  \  other people about this pls?        /
+#  |  Some cool language that I'm making, \
+#  \  so idk why you're interested in it. |
+#  |  While you're here, could you tell   \
+#  \  other people about this pls?        |
 #   ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 # (yes I know that my code is messy, deal with it)
 
@@ -117,13 +117,13 @@ for $file.lines -> $line {
         
         # #:Extend with my-custom-extension.sme
         
-        when /^'#:'Extend\swith\s(\N+?)$/ {
+        when m/^'#:'Extend\swith\s(\N+?)$/ {
             push @Extensions, slurp "$0"
         }
         
         # make var be 1
         
-        when /^\s*make\s(.+?)\sbe\s(\N+?)$/ {
+        when m/^\s*make\s(.+?)\sbe\s(\N+?)$/ {
             $code += "my \\$0 = my \$$0 = $1;\n";
         }
         
@@ -131,7 +131,7 @@ for $file.lines -> $line {
         # -----OR-----
         # var is now 2
         
-        when /^\s*now\s(\S+?)\sis\s(\N+?)$/ | /^(\S+?)\sis\snow\s(\N+?)$/ {
+        when m/^\s*now\s(\S+?)\sis\s(\N+?)$/ | m/^(\S+?)\sis\snow\s(\N+?)$/ {
             $code += "$0 = $1;\n\n";
         }
         
@@ -139,7 +139,7 @@ for $file.lines -> $line {
         # -----OR-----
         # method func takes $a, $b
         
-        when /^\s*['$'|method\s](\S+?)$/ | /^\s*['$'|method\s](\S+?)\s?['['(<-[\]]>+?)']'|takes\s?(<-[\n]>+?)]$/ {
+        when m/^\s*['$'|method\s](\S+?)$/ | m/^\s*['$'|method\s](\S+?)\s?['['(<-[\]]>+?)']'|takes\s?(<-[\n]>+?)]$/ {
             with $1 {
                 $code += "sub $0\($1) \{\n";
             } else {
@@ -151,7 +151,7 @@ for $file.lines -> $line {
         # -----OR-----
         # and func2 takes $a, $b
         
-        when /^\s*['&'|also\s](\S+?)$/ | /^\s*['&'|also\s](\S+?)\s?['['(<-[\]]>+?)']'|takes\s?(<-[\n]>+?)]$/ {
+        when m/^\s*['&'|also\s](\S+?)$/ | m/^\s*['&'|also\s](\S+?)\s?['['(<-[\]]>+?)']'|takes\s?(<-[\n]>+?)]$/ {
             with $1 {
                 $code += "\}\nsub $0\($1) \{\n";
             } else {
@@ -161,7 +161,7 @@ for $file.lines -> $line {
         
         # end
         
-        when /^\s*end$/ {
+        when m/^\s*end$/ {
             $code += "\}\n";
         }
         
@@ -173,25 +173,25 @@ for $file.lines -> $line {
         
         # if true
         
-        when /^\s*if\s+(\N+?)$/ {
+        when m/^\s*if\s+(\N+?)$/ {
             $code += "if $0 \{\n";
         }
         
         # also if true
         
-        when /^\s*[also\sif|elsif]\s+(\N+?)$/ {
+        when m/^\s*[also\sif|elsif]\s+(\N+?)$/ {
             $code += "\} elsif $0 \{\n";
         }
         
         # otherwise
         
-        when /^\s*[else|otherwise]$/ {
+        when m/^\s*[else|otherwise]$/ {
             $code += "\} else \{\n";
         }
         
         # given some-value
         
-        when /^\s*given\s+(\N+)$/ {
+        when m/^\s*given\s+(\N+)$/ {
             $code += "given $0 \{\n#";
         }
         
@@ -200,7 +200,7 @@ for $file.lines -> $line {
         # when value
         #   stuff
         
-        when /^\s*when\s+(\N+)/ {
+        when m/^\s*when\s+(\N+)/ {
             $code += "}\nwhen $0 \{\n"
         }
         
@@ -210,69 +210,69 @@ for $file.lines -> $line {
         #   stuff
         # end
         
-        when /^\s*default\s*$/ {
+        when m/^\s*default\s*$/ {
             $code += "}\ndefault \{\n";
         }
         
         # loop num times as i
         
-        when /^\s*loop\s+(\w+?)\s+times\s+as\s+(\w+?)$/ {
+        when m/^\s*loop\s+(\w+?)\s+times\s+as\s+(\w+?)$/ {
             $code += "for 0..$0 -> \$$1 \{my \\$1 = \$$1;\n";
         }
         
         # loop through dict as k, v
         
-        when /^\s*loop\s+through\s+(\w+?|'['<-[\]]>+?']'|'{'<-[\}\n]>+?'}'|'('<-[\)\n]>+?')')\s+as\s+(\w+)[', '|','](\w+?)$/ {
+        when m/^\s*loop\s+through\s+(\w+?|'['<-[\]]>+?']'|'{'<-[\}\n]>+?'}'|'('<-[\)\n]>+?')')\s+as\s+(\w+)[', '|','](\w+?)$/ {
             $code += "for $0 -> \@GET_KV \{my \\$1 = \@GET_KV[0];my \\$2 = \@GET_KV[1];\n";
         }
         
         # loop through list as i
         
-        when /^\s*loop\s+through\s+(\w+?|'['<-[\]]>+?']'|'{'<-[\}\n]>+?'}'|'('<-[\)\n]>+?')')\s+as\s+(\w+)$/ {
+        when m/^\s*loop\s+through\s+(\w+?|'['<-[\]]>+?']'|'{'<-[\}\n]>+?'}'|'('<-[\)\n]>+?')')\s+as\s+(\w+)$/ {
             $code += "for $0 -> \$$1 \{my \\$1 = \$$1;\n";
         }
         
         # loop from a to b as i
         
-        when /^\s*loop\s+from\s+(\S+?)\s+to\s+(\S+?)\s+as\s+(\N+?)$/ {
+        when m/^\s*loop\s+from\s+(\S+?)\s+to\s+(\S+?)\s+as\s+(\N+?)$/ {
             $code += "for $0..$1 -> \$$2 \{my \\$2 = \$$2;\n";
         }
         
         # loop k, v through dict
         
-        when /^\s*loop\s+(\w+)[', '|','](\w+?)\s+through\s+(\N+?)$/ {
+        when m/^\s*loop\s+(\w+)[', '|','](\w+?)\s+through\s+(\N+?)$/ {
             $code += "for $2 -> \@GET_KV \{my \\$0 = \@GET_KV[0];my \\$1 = \@GET_KV[1];\n";
         }
         
         # loop i through list
         
-        when /^\s*loop\s+(\w+?)\s+through\s+(\N+?)$/ {
+        when m/^\s*loop\s+(\w+?)\s+through\s+(\N+?)$/ {
             $code += "for $1 -> \$$0 \{my \\$0 = \$$0;\n";
         }
         
         # loop while my $i = some-iterator-thing
         # "$" is needed because it's not trying to parse whatever's after "loop while"
         
-        when /^\s*loop\s+while\s+(\N+?)$/ {
+        when m/^\s*loop\s+while\s+(\N+?)$/ {
             $code += "while $0 \{\n";
         }
         
         # loop with some-list
         # Same deal as "loop while"
         
-        when /^\s*loop\s+with\s+(\N+?)$/ {
+        when m/^\s*loop\s+with\s+(\N+?)$/ {
             $code += "for $0 \{\n";
         }
         
         # make myClass
         
-        when /^\s*make\s(\N+?)$/ {
+        when m/^\s*make\s(\N+?)$/ {
             $code += "class $0 \{\n";
         }
         
         # on classMethod [$a, $b]
         
-        when /^\s*on\s(\S+?)$/ | /^\s*on\s(\S+?)\s'['(<-[\]]>+?)']'$/ {
+        when m/^\s*on\s(\S+?)$/ | m/^\s*on\s(\S+?)\s'['(<-[\]]>+?)']'$/ {
             with $1 {
                 $code += "method $0\($1) \{\n";
             } else {
@@ -282,7 +282,7 @@ for $file.lines -> $line {
         
         # on classMethod takes a, b
         
-        when /^\s*on\s(\S+?)\stakes\s(\N+?)$/ {
+        when m/^\s*on\s(\S+?)\stakes\s(\N+?)$/ {
             my $args = "";
             for $1.split(", ") -> $el {
                 $args += "\$$el, ";
@@ -292,7 +292,7 @@ for $file.lines -> $line {
         
         # on setup a is p1, b is p2 and then
         
-        when /^\s*on\ssetup\s(\N+?)\sand\sdo$/ {
+        when m/^\s*on\ssetup\s(\N+?)\sand\sdo$/ {
             my $args = "";
             my $set-vars = "";
             for $0.split(", ") -> $el {
@@ -305,7 +305,7 @@ for $file.lines -> $line {
         
         # on setup a is p1, b is p2
         
-        when /^\s*on\ssetup\s(\N+?)$/ {
+        when m/^\s*on\ssetup\s(\N+?)$/ {
             my $args = "";
             my $set-vars = "";
             for $0.split(", ") -> $el {
@@ -318,7 +318,7 @@ for $file.lines -> $line {
         
         # its p is 1
         
-        when /^\s*its\s+(\S+?)$/ | /^\s*its\s+(\S+?)\s+is\s+(\N+?)$/ {
+        when m/^\s*its\s+(\S+?)$/ | m/^\s*its\s+(\S+?)\s+is\s+(\N+?)$/ {
             with $1 {
                 $code += "has \$\.$0 = $1;\n";
             } else {
@@ -328,7 +328,7 @@ for $file.lines -> $line {
         
         # it takes p1, p2
         
-        when /^\s*it\stakes\s(\N+?)$/ {
+        when m/^\s*it\stakes\s(\N+?)$/ {
             for $0.split(", ") -> $v {
                 $code += "has \$\.$v is rw;\n";
             }
@@ -357,5 +357,7 @@ multi sub infix:<isnt>(Cool $v1, Cool $v2) {
     return not $v1 ~~ $v2;
 }
 
-if @*ARGS[1] ~~ "--debug" || @*ARGS[1] ~~ "-d" {say $code}
-else {EVAL $code
+with @*ARGS[1] {
+	if @*ARGS[1] ~~ "--debug" || @*ARGS[1] ~~ "-d" {say $code}
+	else {EVAL $code}
+}
