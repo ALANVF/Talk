@@ -1,0 +1,21 @@
+#!perl6
+# this doesn't follow the goal that is on rosetta code because it would take way to much time to do atm, so this will implement AppleScript's "`object`'s `element`" syntax instead.
+
+# required btw:
+#:Extend with applescript-object-accessor.sme
+
+make d be dictionary (
+	a means 1
+	b means 2
+	c means 3
+)
+
+say d's a
+say d's b
+say d's c
+
+-/ outputs:
+1
+2
+3
+-\
