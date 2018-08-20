@@ -1,0 +1,35 @@
+#!perl6
+
+# functions can be declared different ways, but they do the same thing
+
+method add takes $a, $b
+	return $a + $b
+end
+
+$minus [$a, $b]
+	return $a - $b
+end
+
+$times takes $a, $b
+	return $a * $b
+end
+
+method divide [$a, $b]
+	return $a / $b
+end
+
+-/ btw
+
+method a And return 1
+also method b And return 2
+end
+
+-means-
+
+method a And return 1
+end
+method b And return 2
+end
+
+(`also method b` can also be `&b`)
+-\
