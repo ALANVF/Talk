@@ -1,0 +1,23 @@
+#!perl6
+
+method twice takes &todo
+	todo() then todo()
+end
+
+# this syntax will change soon
+twice {say "Banana"}
+
+-/ output:
+Banana
+Banana
+-\
+
+method twice-with-param takes &todo
+	todo 0 then todo 1
+}
+twice-with-param -> $time {say ":($time+1): Mango"}
+
+-/output:
+0 Mango
+1 Mango
+-\
