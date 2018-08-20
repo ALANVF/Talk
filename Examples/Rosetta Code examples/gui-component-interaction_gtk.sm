@@ -1,0 +1,38 @@
+#!perl6
+
+# translation of the Perl 6 example
+# probably doesn't work right now.
+
+use GTK::Simple
+use GTK::Simple::App
+ 
+make app be GTK::Simple::App.new: title => "GUI component interaction"
+ 
+app.set-content(
+    make box be GTK::Simple::VBox.new(
+        make value     be GTK::Simple::Entry.new: text => "0",
+        make increment be GTK::Simple::Button.new: label => "Increment",
+        make random    be GTK::Simple::Button.new: label => "Random",
+))
+ 
+app.size-request 400, 100
+app.border-width is now 20
+box.spacing is now 10
+ 
+value.changed.tap: {
+    (value.text ||= "0") ~~ s:g/<-[0..9]>//
+}
+ 
+increment.clicked.tap: {
+    make val be value.text then val += 1 then value.text is now val.Str
+}
+ 
+random.clicked.tap: {
+    # Dirty hack to work around the fact that GTK::Simple doesn't provide
+    # access to GTK message dialogs yet :P
+    if run «zenity --question --text "Reset to random value?"» {
+        value.text = (^100).pick.Str
+    }
+}
+ 
+app.run
