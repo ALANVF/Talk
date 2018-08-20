@@ -1,0 +1,17 @@
+#!perl6
+
+method even-or-odd takes $number
+	if $number % 2 eq 0
+		say ":($number) is even"
+	otherwise
+		say ":($number) is odd"
+	end
+end
+
+even-or-odd 1
+even-or-odd 2
+
+-/ output:
+1 is odd
+2 is even
+-\
