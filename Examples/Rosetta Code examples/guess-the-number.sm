@@ -1,0 +1,11 @@
+#!perl6
+
+make random-number be (1..10).pick
+
+make guess be prompt "Guess some number: "
+
+loop while guess.trim isnt random-number
+	guess is now prompt "Guess some number: "
+end
+
+say "Correct!"
