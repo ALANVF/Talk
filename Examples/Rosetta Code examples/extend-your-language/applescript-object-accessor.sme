@@ -1,0 +1,8 @@
+#!coffee
+#for syntax highlighting. don't actually add these two lines.
+
+Find:
+	(<[\w\-]>+)
+	["'"s\s]
+	(<[\w-]>+)
+Replace: $0<$1>
