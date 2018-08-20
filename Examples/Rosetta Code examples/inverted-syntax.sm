@@ -1,0 +1,26 @@
+#!perl6
+
+# this will probably be extended later
+
+make my-list be list ()
+
+now my-list is list (1, 2, 3)
+
+loop i through my-list
+	say i
+end
+
+my-list is now list (4, 5, 6)
+
+loop through my-list as 1
+	say i
+end
+
+-/ output:
+1
+2
+3
+4
+5
+6
+-\
