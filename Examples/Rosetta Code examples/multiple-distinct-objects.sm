@@ -1,0 +1,9 @@
+#!perl6
+
+make Banana then end
+
+make bananas be list ()
+
+loop 5 times as i
+	bananas.push: Banana.new
+end
