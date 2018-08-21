@@ -1,0 +1,13 @@
+#!perl6
+
+loop 5 times as i
+	say "*" * i
+end
+
+-/ output:
+*
+**
+***
+****
+*****
+-\
