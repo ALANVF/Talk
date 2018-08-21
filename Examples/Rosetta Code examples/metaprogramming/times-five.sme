@@ -1,0 +1,7 @@
+#!coffee
+#for highlighting, don't actually include these two lines
+
+Find:
+	^\s*'five-times'\sas\s
+	(\N+)$
+Replace: loop 5 times as $0
