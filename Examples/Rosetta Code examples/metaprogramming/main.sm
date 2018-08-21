@@ -1,0 +1,12 @@
+#!perl6
+
+#:Extend with times-five.sme
+
+# metaprogramming in Talk is kinda basic atm, but more stuff will be added soon. Perl 6 metaprogramming still works though
+# this doesn't actually work right now, but it will in the next update
+
+times-five as i
+	print i
+end
+
+#outputs: 12345
