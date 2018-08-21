@@ -1,0 +1,28 @@
+#!perl6
+
+loop from 1 to 100 as i
+	i is now i.Str
+	
+	if not(i.chop(2).starts-with("1")) and i.chop.ends-with(one <1 2 3>)
+		if i.ends-with "1"
+			print i + "st "
+		also if i.ends-with "2"
+			print i + "nd "
+		also if i.ends-with "3"
+			print i + "rd "
+		end
+	otherwise
+		print i + "th "
+	end
+	
+	if i.Int % 10 eq 0
+		say newline
+	end
+end
+
+-/ output:
+1st 2nd 3rd 4th 5th 6th 7th 8th 9th
+10th 11th 12th 13th 14th 15th 16th 17th 18th 19th
+20th 21st 22nd 23rd 24th 25th 26th 27th 28th 29th
+...
+-\
