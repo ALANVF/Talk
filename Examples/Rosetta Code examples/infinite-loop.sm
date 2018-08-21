@@ -1,0 +1,12 @@
+#!perl6
+
+loop while true
+	say "banana"
+end
+
+-/ output:
+banana
+banana
+banana
+...
+-\
