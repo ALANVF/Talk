@@ -1,0 +1,11 @@
+#!perl6
+
+# the way that named parameters are declared and assigned will change sometime in the future
+
+method add takes :$value1, :$value2
+	say $value1 + $value2
+end
+
+add value1 => 1, value2 => 2
+
+#outputs: 3
