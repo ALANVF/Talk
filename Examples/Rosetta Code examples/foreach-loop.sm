@@ -1,0 +1,27 @@
+#!perl6
+
+make my-list be list (1, 2, 3, 4, 5)
+
+make my-dict be dictionary (
+	a means "banana"
+	b means "mango"
+	c means "apple"
+)
+
+loop through my-list as i
+	say i
+end
+
+loop k, v through my-dict
+	say k + " is " + v
+end
+
+
+-/ output:
+1
+2
+3
+a is banana
+b is mango
+c is apple
+-\
