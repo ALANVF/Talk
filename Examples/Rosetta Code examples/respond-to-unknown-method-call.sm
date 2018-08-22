@@ -1,0 +1,16 @@
+#!perl6
+
+# translation of the Perl 6 example
+
+make Farragut
+    on FALLBACK takes $name, *@rest
+        say self.WHAT.perl, ": ", $name.tc(), " the ", @rest[], " full speed ahead!"
+    end
+end
+
+make Sparrow
+	also is Farragut
+end
+
+Farragut.damn: "torpedoes"
+Sparrow.hoist: <Jolly Roger mateys>
