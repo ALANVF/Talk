@@ -1,0 +1,5 @@
+#!perl6
+
+loop through open("some-file.txt").lines as line
+	say line
+end
