@@ -1,0 +1,11 @@
+#!perl6
+
+say "ha" * 5
+
+# or the Perl 6 way
+say "ha" x 5
+
+-/ output:
+hahahahaha
+hahahahaha
+-\
