@@ -1,0 +1,14 @@
+#!perl6
+
+if true
+	say "is true"
+end
+
+if not false
+	say "is not false"
+end
+
+-/ output:
+is true
+is not false
+-\
