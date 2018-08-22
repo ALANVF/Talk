@@ -1,0 +1,5 @@
+#!perl6
+
+make l be list (1, 2, 3, 4, 5)
+
+say l.pick #outputs either 1, 2, 3, 4, or 5
