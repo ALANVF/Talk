@@ -1,0 +1,15 @@
+#!perl6
+
+# it's the same as it is in Perl 6
+
+say Str.^methods
+
+-/ output:
+(BUILD Capture Int Num chomp starts-with ends-with substr-eq
+contains indices index rindex pred succ comb match subst-mutate
+subst lines parse-base samecase samemark samespace word-by-word
+trim-leading trim-trailing trim words encode NFC NFD NFKC NFKD
+wordcase trans parse-names uniparse indent codes chars uc lc tc
+fc tclc flip ord WHY WHICH Bool Str Stringy DUMP ACCEPTS chop
+Numeric gist perl ords split substr substr-rw BUILDALL)
+-\
