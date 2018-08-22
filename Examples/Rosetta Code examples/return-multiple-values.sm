@@ -1,0 +1,9 @@
+#!perl6
+
+# translation of the Perl 6 example
+
+method addmul takes $a, $b
+	return $a + $b, $a * $b
+end
+ 
+my ($add, $mul) = addmul 3, 7 #using normal Perl 6 syntax for this because I forgot about destructured assignment
