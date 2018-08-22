@@ -1,0 +1,13 @@
+#!perl6
+
+method add takes $a, $b, $c?
+	return $a + $b + ($c or 0)
+end
+
+say add(1, 2, 3)
+say add(1, 2)
+
+-/ output:
+6
+3
+-\
