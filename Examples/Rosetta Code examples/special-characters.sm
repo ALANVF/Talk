@@ -1,0 +1,30 @@
+#!perl6
+
+# (things here might change eventually)
+
+-/ most things from Perl 6 work with Talk, but there are some exceptions:
+	
+	- "$some-var" at the beginning of a line followed optionally followed by "takes `args`" or " [`args`]" will be read as
+		a method declaration. Can be avoided by starting with a semicolon (";").
+	
+	- "@some-class-method" at the beginning of a line followed optionally followed by "takes `args`" or " [`args`]" will be
+		read as a class method declaration. Can be avoided by starting with a semicolon (";").
+	
+	- "&some-method" at the beginning of a line followed optionally followed by "takes `args`" or " [`args`]" will be read as
+		a 'lazy extra method' (that's explained somewhere else). Can be avoided by starting with a semicolon (";").
+	
+	- The way that "" and '' work are flipped, but text inside '' isn't delimited so if you had "say 'And then' ", the
+		interpereter would see "
+		say '
+		
+		'
+		".
+	
+	- Regex ("//") is not delimited by the interpereter yet, so be careful.
+	
+	- "#:" Identifies a macro command.
+	
+	- "#" identifies a single-line comment.
+	
+	- "-/ ... \-" identifies a multi-line comment.
+-\
