@@ -1,0 +1,12 @@
+#!perl6
+
+make l be list ("banana", "mango")
+
+make m be "push"
+
+# currently, '' must be used instead of "", and the variable needs a scalar
+l.'$m'("apple")
+
+say l
+
+#outputs: (banana mango apple)
