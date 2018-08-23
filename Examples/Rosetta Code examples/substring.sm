@@ -1,0 +1,3 @@
+make my-str be "abcdefgh"
+
+say my-str[2, 3] #outputs: "cde"
