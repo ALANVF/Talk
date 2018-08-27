@@ -95,7 +95,11 @@ multi sub infix:<as>(%hash, Str $s) {
 }
 
 multi sub postcircumfix:<[ ]>(Str $s, @get) {
-    return $s.substr: @get;
+    return $s.substr: |@get;
+}
+
+multi sub postcircumfix:<[ ]>(Str $s, Range $get) {
+	return $s.substr: $get;
 }
 
 sub list(*@elements) {
