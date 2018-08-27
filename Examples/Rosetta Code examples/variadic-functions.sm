@@ -1,0 +1,29 @@
+#!perl6
+
+# same as Perl 6 for now
+
+method no-slurpy-params
+	.say for @_
+	say .key, " is ", .value for %_
+end
+
+method with-slurpy-params takes *@things, *%stuff
+	.say for @things
+	say .key, " is ", .value for %stuff
+end
+
+no-slurpy-params 5, 10, banana => "thing"
+
+say newline
+
+with-slurpy-params 5, 10, banana => "thing"
+
+-/ output:
+5
+10
+banana is thing
+
+5
+10
+banana is thing
+-\
