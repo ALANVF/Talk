@@ -1,0 +1,5 @@
+#!perl6
+
+make question be prompt "say something: "
+
+say question
