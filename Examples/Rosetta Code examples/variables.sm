@@ -1,0 +1,31 @@
+#!perl6
+
+# variables are definitly not done yet. about 3/4 of this will change eventually
+# can't use special scopes like `our` or `state` yet
+
+# a normal variable:
+make a be 1
+
+say a #outputs: 1
+
+make test-class
+	#read-only class variable set at initialization:
+	its p1 is 1
+	
+	#read-write class variable(s):
+	it takes p2, p3
+end
+
+#the way that adverbs are declared will change at some point as well
+make t be new test-class: p1 => 1, p2 => 2, p3 => 3
+
+say t.p1, t.p2, t.p3 #outputs: 1 2 3
+
+t.p2 is now 5
+t.p3 is now 10
+
+say t.p1, t.p2, t.p3 #outputs: 1 5 10
+
+t.p1 is now 2 #ERROR! you can't edit a read-only property
+
+# other stuff is coming soon...
