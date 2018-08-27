@@ -1,0 +1,25 @@
+#!perl6
+
+# translation of the Perl 6 example
+
+make scale be dictionary (
+    Celcius means dictionary (
+    	factor means 1
+		offset means -273.15
+	)
+    Rankine means dictionary (
+		factor means 1.8
+		offset means 0
+	)
+    Fahrenheit means dictionary (
+		factor means 1.8
+		offset means -459.67
+	)
+)
+ 
+make kelvin be +prompt "Enter a temperature in Kelvin: "
+die "No such temperature!" if kelvin lt 0
+ 
+loop with scale.sort
+    printf "%12s: %7.2f\n", .key, kelvin * .value<factor> + .value<offset>
+end
