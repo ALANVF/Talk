@@ -20,7 +20,7 @@ app.border-width is now 20
 box.spacing is now 10
  
 value.changed.tap: {
-    (value.text ||= "0") ~~ s:g/<-[0..9]>//
+    (value.text ||= "0") is s:g/<-[0..9]>//
 }
  
 increment.clicked.tap: {
@@ -30,9 +30,9 @@ increment.clicked.tap: {
 random.clicked.tap: {
     # Dirty hack to work around the fact that GTK::Simple doesn't provide
     # access to GTK message dialogs yet :P
-    if run «zenity --question --text "Reset to random value?"» {
-        value.text = (^100).pick.Str
-    }
+    if run «zenity --question --text "Reset to random value?"»
+        value.text is now (^100).pick.Str
+    end
 }
  
 app.run
