@@ -26,5 +26,5 @@
 	
 	- "#" identifies a single-line comment.
 	
-	- "-/ ... \-" identifies a multi-line comment.
+	- "-/ ... -\ " identifies a multi-line comment.
 -\
