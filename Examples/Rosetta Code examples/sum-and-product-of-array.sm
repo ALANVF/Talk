@@ -1,0 +1,8 @@
+#!perl6
+
+# translation of the Perl 6 example
+
+make ary be list (1, 5, 10, 100)
+
+say "Sum: ",     [+] ary
+say "Product: ", [*] ary
