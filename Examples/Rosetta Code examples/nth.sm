@@ -3,7 +3,7 @@
 loop from 1 to 100 as i
 	i is now i.Str
 	
-	if not(i.chop(2).starts-with("1")) and i.chop.ends-with(one <1 2 3>)
+	if i[*-2, *-1] isnt "1" and i[*-1, *] is one <1 2 3>
 		if i.ends-with "1"
 			print i + "st "
 		also if i.ends-with "2"
@@ -15,7 +15,7 @@ loop from 1 to 100 as i
 		print i + "th "
 	end
 	
-	if i.Int % 10 eq 0
+	if i.Int %% 10
 		say newline
 	end
 end
