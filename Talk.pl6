@@ -39,7 +39,7 @@ sub Parse-Extension(\file, $ext is copy) {
 
 
 
-my $file = slurp 'data.sm';
+my $file = slurp @*ARGS[0];
 
 $file ~~ s:g/\"':('(<-[\)]>+?)')'/$0.Str+\"/;
 $file ~~ s:g/':('(<-[\)]>+?)')'\"/\"+$0.Str/;
