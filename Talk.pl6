@@ -5,9 +5,12 @@
 # 
 # Language website: https://Talk-reference-guide--theangryepicbanana.repl.co
 # 
-# Version 1.0.4
+# Version 1.0.5
 # ==== New Stuff ====
-# - Smashed a bug or two.
+# - Changed how strings are interpolated! "" and '' can now be used the way that they are in Perl 6.
+# - Added typed variables.
+# - Added reference variables.
+# - Added a shortcut for assigning to new class instance
 # ===================
 # 
 #   ______________________________________
@@ -36,15 +39,15 @@ sub Parse-Extension(\file, $ext is copy) {
 
 
 
-my $file = slurp @*ARGS[0];
+my $file = slurp 'data.sm';
 
 $file ~~ s:g/\"':('(<-[\)]>+?)')'/$0.Str+\"/;
 $file ~~ s:g/':('(<-[\)]>+?)')'\"/\"+$0.Str/;
 $file ~~ s:g/':('(<-[\)]>+?)')'/\"+$0.Str+\"/;
 
 my $STR;
-$file ~~ s:m:g/(\"<(<-[\"]>+?)>\")/({$STR = $0.Str.encode(qq<UTF-8>).perl}.decode.Str)/;
-$file ~~ s:m:g/(\W)(\'<(<-[\']>+?)>\')/$0\"$1\"/;
+$file ~~ s:m:g/(\"<(<-[\"]>+?)>\")/#`[:DQ-B:]{$STR = $0.Str.encode(qq<UTF-8>).perl}.decode.Str#`[:DQ-E:]/;
+$file ~~ s:m:g/<?after \W>(\'<(<-[\']>+?)>\')/#`[:SQ-B:]{$STR = $0.Str.encode(qq<UTF-8>).perl}.decode.Str#`[:SQ-E:]/;
 
 $file ~~ s:g/^^\s*(\S+?)\h+means\h+(\N+?)\n/, $0 => $1/;
 $file ~~ s:m:g/(dictionary\s*?\()\s+?/$0/;
@@ -99,7 +102,7 @@ multi sub postcircumfix:<[ ]>(Str $s, @get) {
 }
 
 multi sub postcircumfix:<[ ]>(Str $s, Range $get) {
-	return $s.substr: $get;
+    return $s.substr: $get;
 }
 
 sub list(*@elements) {
@@ -125,10 +128,30 @@ for $file.lines -> $line {
             push @Extensions, slurp "$0"
         }
         
+        # make int-var (an Int) be 1
+        
+        when m/^\s*make\s(.+?)\s\([an||a||of]\s(.+?)\)\sbe\s(\N+?)$/ {
+            $code += "my \\$0 = my $1 \$$0 = $2;\n";
+        }
+        
+        # make a be new Map with 'a', 1, 'b', 2, 'c', 3
+        # -----OR-----
+        # make a be a new Map with 'a', 1, 'b', 2, 'c', 3
+        
+        when m/^\s*make\s(.+?)\sbe[\sa]?\snew\s(.+?)\swith\s(\N+?)$/ {
+            $code += "my \\$0 = my \$$0 = new $1: $2;\n";
+        }
+        
         # make var be 1
         
         when m/^\s*make\s(.+?)\sbe\s(\N+?)$/ {
             $code += "my \\$0 = my \$$0 = $1;\n";
+        }
+        
+        # make pointer mean 1
+        
+        when m/^\s*make\s(.+?)\smean\s(\N+?)$/ {
+            $code += "my \\$0 = $1;\n";
         }
         
         # now var is 2
@@ -346,6 +369,9 @@ for $file.lines -> $line {
 
 $code ~~ s:g/(\( || \[ || \{ || \,)\;/$0/;
 $code ~~ s:g/\(\n\n\,/\(/;
+
+$code ~~ s:g/'#`[:DQ-B:]'('utf8.new('.+?').decode.Str')'#`[:DQ-E:]'/"{EVAL($0)}"/;
+$code ~~ s:g/'#`[:SQ-B:]'('utf8.new('.+?').decode.Str')'#`[:SQ-E:]'/'{EVAL($0)}'/;
 
 for @Extensions -> $ext {
     Parse-Extension $code, $ext;
