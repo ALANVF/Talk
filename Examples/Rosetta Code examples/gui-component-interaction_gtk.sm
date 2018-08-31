@@ -9,7 +9,7 @@ use GTK::Simple::App
 make app be a new GTK::Simple::App with title => "GUI component interaction"
  
 app.set-content(
-    make box be GTK::Simple::VBox.new(
+    make box be a new GTK::Simple::VBox with (
         make value be a new GTK::Simple::Entry with text => "0",
         make increment be a new GTK::Simple::Button with label => "Increment",
         make random be a new GTK::Simple::Button with label => "Random",
