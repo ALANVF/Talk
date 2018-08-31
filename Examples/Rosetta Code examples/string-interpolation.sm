@@ -2,4 +2,4 @@
 
 make my-str be "banana"
 
-say "I like :(my-str)s" #outputs: "I like bananas"
+say "I like $(my-str)s" #outputs: "I like bananas"
