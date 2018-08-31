@@ -7,7 +7,7 @@ make my-dict be dictionary (
 )
 
 loop though my-dict as k, v
-	say ":(k) is :(v)"
+	say "$(k) is $(v)"
 end
 
 -/ outputs:
