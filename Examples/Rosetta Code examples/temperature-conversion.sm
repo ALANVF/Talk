@@ -4,7 +4,7 @@
 
 make scale be dictionary (
     Celcius means dictionary (
-    	factor means 1
+		factor means 1
 		offset means -273.15
 	)
     Rankine means dictionary (
