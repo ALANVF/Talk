@@ -19,6 +19,9 @@ end
 #the way that adverbs are declared will change at some point as well
 make t be new test-class: p1 => 1, p2 => 2, p3 => 3
 
+#also works
+make t2 be a new test-class with p1 => 1, p2 => 2, p3 => 3
+
 say t.p1, t.p2, t.p3 #outputs: 1 2 3
 
 t.p2 is now 5
