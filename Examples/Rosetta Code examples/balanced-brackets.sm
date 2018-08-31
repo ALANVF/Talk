@@ -16,4 +16,4 @@ method balanced takes $s
 end
  
 make s be "[[][][[][[][]]][]]"
-say ":(s) :((balanced(s) ?? 'is' !! 'is not')) well-balanced"
+say "$(s) $((balanced(s) ?? 'is' !! 'is not')) well-balanced"
