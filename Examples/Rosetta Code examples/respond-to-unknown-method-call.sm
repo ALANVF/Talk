@@ -4,7 +4,7 @@
 
 make Farragut
     on FALLBACK takes $name, *@rest
-        say self.WHAT.perl, ": ", $name.tc(), " the ", @rest[], " full speed ahead!"
+        say "$(self.WHAT.perl): $name.tc() the @rest[] full speed ahead!"
     end
 end
 
