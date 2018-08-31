@@ -5,14 +5,14 @@ loop from 1 to 100 as i
 	
 	if i[*-2, *-1] isnt "1" and i[*-1, *] is one <1 2 3>
 		if i.ends-with "1"
-			print i + "st "
+			print "$(i)st "
 		also if i.ends-with "2"
-			print i + "nd "
+			print "$(i)nd "
 		also if i.ends-with "3"
-			print i + "rd "
+			print "$(i)rd "
 		end
 	otherwise
-		print i + "th "
+		print "$(i)th "
 	end
 	
 	if i.Int %% 10
