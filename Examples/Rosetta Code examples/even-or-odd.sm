@@ -2,9 +2,9 @@
 
 method even-or-odd takes $number
 	if $number %% 2
-		say ":($number) is even"
+		say "$number is even"
 	otherwise
-		say ":($number) is odd"
+		say "$number is odd"
 	end
 end
 
