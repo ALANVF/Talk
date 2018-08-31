@@ -17,7 +17,7 @@ make scale be dictionary (
 	)
 )
  
-make kelvin be +prompt "Enter a temperature in Kelvin: "
+make kelvin be prompt "Enter a temperature in Kelvin: "
 die "No such temperature!" if kelvin lt 0
  
 loop with scale.sort
