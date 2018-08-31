@@ -13,12 +13,7 @@
 	- "&some-method" at the beginning of a line followed optionally followed by "takes `args`" or " [`args`]" will be read as
 		a 'lazy extra method' (that's explained somewhere else). Can be avoided by starting with a semicolon (";").
 	
-	- The way that "" and '' work are flipped, but text inside '' isn't delimited so if you had "say 'And then' ", the
-		interpereter would see "
-		say '
-		
-		'
-		".
+	- The way that "" and '' work are the same as Perl 6.
 	
 	- Regex ("//") is not delimited by the interpereter yet, so be careful.
 	
