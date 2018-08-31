@@ -15,7 +15,7 @@ Banana
 method twice-with-param takes &todo
 	todo 0 then todo 1
 }
-twice-with-param -> $time {say ":($time+1): Mango"}
+twice-with-param -> $time {say "$($time+1): Mango"}
 
 -/output:
 0 Mango
