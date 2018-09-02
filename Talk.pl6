@@ -389,5 +389,5 @@ multi sub infix:<isnt>(Cool $v1, Cool $v2) {
 
 with @*ARGS[1] {
 	if @*ARGS[1] ~~ "--debug" || @*ARGS[1] ~~ "-d" {say $code}
-	else {EVAL $code}
-}
+	else {say "Invalid option!"}
+} else {EVAL $code}
